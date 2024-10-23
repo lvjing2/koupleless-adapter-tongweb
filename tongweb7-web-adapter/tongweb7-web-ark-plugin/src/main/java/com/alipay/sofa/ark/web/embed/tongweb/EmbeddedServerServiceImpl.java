@@ -22,5 +22,5 @@ import com.tongweb.container.startup.ServletContainer;
 /**
  * @author chenjian
  */
-public class EmbeddedServerServiceImpl implements AbstractEmbeddedServerService<ServletContainer> {
+public class EmbeddedServerServiceImpl extends AbstractEmbeddedServerService<ServletContainer> {
 }
