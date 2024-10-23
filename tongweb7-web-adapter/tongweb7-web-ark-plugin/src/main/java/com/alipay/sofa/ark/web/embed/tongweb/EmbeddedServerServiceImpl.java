@@ -16,32 +16,11 @@
  */
 package com.alipay.sofa.ark.web.embed.tongweb;
 
-import com.alipay.sofa.ark.spi.web.EmbeddedServerService;
+import com.alipay.sofa.ark.spi.web.AbstractEmbeddedServerService;
 import com.tongweb.container.startup.ServletContainer;
 
 /**
  * @author chenjian
  */
-public class EmbeddedServerServiceImpl implements EmbeddedServerService<ServletContainer> {
-
-    private ServletContainer container;
-    private Object           lock = new Object();
-
-    public EmbeddedServerServiceImpl() {
-    }
-
-    public ServletContainer getEmbedServer() {
-        return this.container;
-    }
-
-    public void setEmbedServer(ServletContainer container) {
-        if (this.container == null) {
-            synchronized (this.lock) {
-                if (this.container == null) {
-                    this.container = container;
-                }
-            }
-        }
-
-    }
+public class EmbeddedServerServiceImpl implements AbstractEmbeddedServerService<ServletContainer> {
 }
