@@ -10,7 +10,7 @@
 ## 快速开始
 ### 1. 安装依赖
 首先需要确保已经在maven仓库中导入了TongWEB相关的依赖。
-(这里有个关键点，由于koupleless 2.2.9项目对于依赖包的识别机制与TongWEB的包结构冲突，需要将TongWEB的依赖包加上sofa-ark-的前缀,具体的识别机制可参考koupleless的com.alipay.sofa.ark.container.model.BizModel类)
+(这里有个关键点，由于koupleless 2.2.14项目对于依赖包的识别机制与TongWEB的包结构冲突，需要将TongWEB的依赖包加上sofa-ark-的前缀,具体的识别机制可参考koupleless的com.alipay.sofa.ark.container.model.BizModel类)
 
 增加的install脚本参考如下：
 ```angular2html
@@ -51,7 +51,7 @@ pause
     <dependency>
         <groupId>com.alipay.sofa</groupId>
         <artifactId>web-ark-plugin</artifactId>
-        <version>${sofa.ark.version></version>
+        <version>${sofa.ark.version}</version>
     </dependency>
 ```
 替换为本项目的坐标
@@ -59,13 +59,13 @@ pause
     <dependency>
         <groupId>com.alipay.sofa</groupId>
         <artifactId>tongweb7-web-ark-plugin</artifactId>
-        <version>2.2.9</version>
+        <version>${sofa.ark.version}</version>
     </dependency>
     
     <dependency>
         <groupId>com.alipay.sofa</groupId>
         <artifactId>tongweb7-sofa-ark-springboot-starter</artifactId>
-        <version>2.2.9</version>
+        <version>${sofa.ark.version}</version>
     </dependency>
 ```
 

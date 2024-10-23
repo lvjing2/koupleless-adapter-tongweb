@@ -37,18 +37,5 @@ public class TongWebPluginActivator implements PluginActivator {
     }
 
     public void stop(PluginContext context) {
-        ServletContainer webServer = null;
-        if (this.embeddedServerService.getEmbedServer() instanceof ServletContainer) {
-            webServer = (ServletContainer) this.embeddedServerService.getEmbedServer();
-        }
-
-        if (webServer != null) {
-            try {
-                webServer.destroy();
-            } catch (Exception var4) {
-                ArkLoggerFactory.getDefaultLogger().error("Unable to stop embedded TongWeb", var4);
-            }
-        }
-
     }
 }

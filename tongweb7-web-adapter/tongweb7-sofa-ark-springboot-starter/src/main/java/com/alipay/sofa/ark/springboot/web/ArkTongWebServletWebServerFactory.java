@@ -95,14 +95,19 @@ public class ArkTongWebServletWebServerFactory extends TongWebServletWebServerFa
 
     @Override
     public WebServer getWebServer(ServletContextInitializer... initializers) {
+        if (embeddedServerService == null && ArkClient.getInjectionService() != null) {
+            // 非应用上下文 (例如: Spring Management Context) 没有经历 Start 生命周期, 不会被注入 ArkServiceInjectProcessor,
+            // 因此 @ArkInject 没有被处理, 需要手动处理
+            ArkClient.getInjectionService().inject(this);
+        }
         ServletContainer servletContainer;
         if (embeddedServerService == null) {
             return super.getWebServer(initializers);
-        } else if (embeddedServerService.getEmbedServer() == null) {
-            embeddedServerService.setEmbedServer(initEmbedWebServer(initializers));
-            servletContainer = embeddedServerService.getEmbedServer();
+        } else if (embeddedServerService.getEmbedServer(getPort()) == null) {
+            embeddedServerService.putEmbedServer(getPort(), initEmbedWebServer(initializers));
+            servletContainer = (ServletContainer) embeddedServerService.getEmbedServer(getPort());
         } else {
-            servletContainer = embeddedServerService.getEmbedServer();
+            servletContainer = (ServletContainer) embeddedServerService.getEmbedServer(getPort());
             prepareContext(servletContainer.getHost(), initializers);
         }
         return getWebServer(servletContainer);
